@@ -2,9 +2,11 @@ package mattia.susin.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import mattia.susin.entities.Libro;
 import mattia.susin.exceptions.NotFoundException;
 
+import java.util.List;
 import java.util.UUID;
 
 public class LibroDao {
@@ -29,15 +31,23 @@ public class LibroDao {
     }
 
     public Libro findById(String libroId) {
-        Libro found = em.find(Libro.class, UUID.fromString(libroId));
-        if (found == null)
-            throw new NotFoundException(libroId);
-
-        return found;
+        try {
+            // Prova a convertire la stringa in UUID
+            UUID uuid = UUID.fromString(libroId);
+            Libro found = em.find(Libro.class, uuid);
+            if (found == null) {
+                throw new NotFoundException(libroId);
+            }
+            return found;
+        } catch (IllegalArgumentException e) {
+            // Questo errore si verifica se libroId non è un formato valido di UUID
+            System.err.println("Errore: ID non valido - " + libroId);
+            throw e; // Rilancia l'eccezione o gestiscila come preferisci
+        }
     }
 
     public void findByIdAndDelete(String libroId) {
-        // 0--> Cercare lo studente nel DB
+
         Libro found = this.findById(libroId);
         // 1--> Chiediamo all'EM una transazione
         EntityTransaction transaction = em.getTransaction();
@@ -51,4 +61,10 @@ public class LibroDao {
         System.out.println("Il Libro " + found.getTitolo() + " è stato eliminato correttamente!");
     }
 
+
+    public List<Libro> findByAutore(String autore) {
+        TypedQuery<Libro> query = em.createQuery("SELECT l FROM Libro l WHERE l.autore = :autore", Libro.class);
+        query.setParameter("autore", autore);
+        return query.getResultList();
+    }
 }

@@ -3,6 +3,7 @@ package mattia.susin.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -27,6 +28,9 @@ public class Utente {
     @Column(name = "numero_tessera")
     private UUID numeroTessera;
 
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti;
+
     //COSTRUTTORI
 
     public Utente() {
@@ -35,10 +39,12 @@ public class Utente {
 
     }
 
-    public Utente(String nome, String cognome, Date dataDiNascita) {
+    public Utente(String nome, String cognome, Date dataDiNascita, UUID numeroTessera, List<Prestito> prestiti) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
+        this.numeroTessera = numeroTessera;
+        this.prestiti = prestiti;
     }
 
     //SETTER E GETTER
@@ -79,6 +85,14 @@ public class Utente {
         this.numeroTessera = numeroTessera;
     }
 
+    public List<Prestito> getPrestiti() {
+        return prestiti;
+    }
+
+    public void setPrestiti(List<Prestito> prestiti) {
+        this.prestiti = prestiti;
+    }
+
     //TO STRING
 
     @Override
@@ -89,6 +103,7 @@ public class Utente {
                 ", cognome='" + cognome + '\'' +
                 ", dataDiNascita=" + dataDiNascita +
                 ", numeroTessera=" + numeroTessera +
+                ", prestiti=" + prestiti +
                 '}';
     }
 }

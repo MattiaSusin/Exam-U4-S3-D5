@@ -37,7 +37,7 @@ public class RivistaDao {
     }
 
     public void findByIdAndDelete(String rivistaId) {
-        // 0--> Cercare lo studente nel DB
+        // 0--> Cercare la rivista nel DB
         Rivista found = this.findById(rivistaId);
         // 1--> Chiediamo all'EM una transazione
         EntityTransaction transaction = em.getTransaction();
@@ -49,5 +49,10 @@ public class RivistaDao {
         transaction.commit();
         // 5-->Stampiamo per vedere se ci ha realmente salvato il tutto
         System.out.println("La Rivista " + found.getTitolo() + " è stata eliminata correttamente!");
+    }
+
+    public Rivista findTitoloRivista(String titolo) {
+        EntityTransaction transaction = em.getTransaction();
+        return null;
     }
 }

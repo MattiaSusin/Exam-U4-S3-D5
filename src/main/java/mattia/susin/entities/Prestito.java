@@ -13,10 +13,15 @@ public class Prestito {
 
     @Id
     @GeneratedValue
-    private UUID utenteId;
+    private UUID id;
 
-    @Column(name = "elemento_prestato")
-    private String elementoPrestato;
+    @ManyToOne
+    @JoinColumn(name = "utente_id", nullable = false)
+    private Utente utente;
+
+    @ManyToOne
+    @JoinColumn(name = "isbn", nullable = false)
+    private LibroRivista libroRivista; // Questo rappresenta l'elemento prestato, che può essere un libro o una rivista
 
     @Column(name = "data_inizio_prestito")
     private Date dataInizioPrestito;
@@ -25,33 +30,43 @@ public class Prestito {
     private Date dataRestituzionePrevista;
 
     @Column(name = "data_restituzione_effettiva")
-    private Date DataRestituzioneEffettiva;
+    private Date dataRestituzioneEffettiva;
 
     //COSTRUTTORI
     public Prestito() {
         //COSTRUTTORE DI DEFAULT
     }
 
-    public Prestito(String elementoPrestato, Date dataInizioPrestito, Date dataRestituzionePrevista, Date dataRestituzioneEffettiva) {
-        this.elementoPrestato = elementoPrestato;
+    public Prestito(Utente utente, LibroRivista libroRivista, Date dataInizioPrestito, Date dataRestituzionePrevista, Date dataRestituzioneEffettiva) {
+        this.utente = utente;
+        this.libroRivista = libroRivista;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
-        DataRestituzioneEffettiva = dataRestituzioneEffettiva;
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 
-    //SETTER E GETTER
+
+//SETTER E GETTER
 
 
-    public UUID getUtenteId() {
-        return utenteId;
+    public UUID getId() {
+        return id;
     }
 
-    public String getElementoPrestato() {
-        return elementoPrestato;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setElementoPrestato(String elementoPrestato) {
-        this.elementoPrestato = elementoPrestato;
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public LibroRivista getLibroRivista() {
+        return libroRivista;
+    }
+
+    public void setLibroRivista(LibroRivista libroRivista) {
+        this.libroRivista = libroRivista;
     }
 
     public Date getDataInizioPrestito() {
@@ -71,22 +86,24 @@ public class Prestito {
     }
 
     public Date getDataRestituzioneEffettiva() {
-        return DataRestituzioneEffettiva;
+        return dataRestituzioneEffettiva;
     }
 
     public void setDataRestituzioneEffettiva(Date dataRestituzioneEffettiva) {
-        DataRestituzioneEffettiva = dataRestituzioneEffettiva;
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
+//TO STRING
 
-    //TO STRING
+
     @Override
     public String toString() {
         return "Prestito{" +
-                "utenteId=" + utenteId +
-                ", elementoPrestato='" + elementoPrestato + '\'' +
+                "id=" + id +
+                ", utente=" + utente +
+                ", libroRivista=" + libroRivista +
                 ", dataInizioPrestito=" + dataInizioPrestito +
                 ", dataRestituzionePrevista=" + dataRestituzionePrevista +
-                ", DataRestituzioneEffettiva=" + DataRestituzioneEffettiva +
+                ", dataRestituzioneEffettiva=" + dataRestituzioneEffettiva +
                 '}';
     }
 }
