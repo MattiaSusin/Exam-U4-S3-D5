@@ -1,16 +1,19 @@
 package mattia.susin.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "riviste")
 public class Rivista {
 
     //ATTRIBUTI
+
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     private PeriodicitàRiviste periodicitàRiviste;
@@ -29,6 +32,10 @@ public class Rivista {
 
     //SETTER E GETTER
 
+    public UUID getId() {
+        return id;
+    }
+
     public PeriodicitàRiviste getPeriodicitàRiviste() {
         return periodicitàRiviste;
     }
@@ -38,12 +45,12 @@ public class Rivista {
     }
 
     //TO STRING
-
-
+    
     @Override
     public String toString() {
         return "Rivista{" +
-                "periodicitàRiviste=" + periodicitàRiviste +
+                "id=" + id +
+                ", periodicitàRiviste=" + periodicitàRiviste +
                 '}';
     }
 }
