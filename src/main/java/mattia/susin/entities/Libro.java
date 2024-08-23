@@ -1,18 +1,14 @@
 package mattia.susin.entities;
 
-import jakarta.persistence.*;
-
-import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "libri")
-public class Libro {
+public class Libro extends LibroRivista {
 
     //ATTRIBUTI
-
-    @Id
-    @GeneratedValue
-    private UUID id;
 
     @Column(name = "autori")
     private String autore;
@@ -32,11 +28,6 @@ public class Libro {
     }
 
     //SETTER GETTER
-
-
-    public UUID getId() {
-        return id;
-    }
 
     public String getAutore() {
         return autore;
@@ -61,7 +52,6 @@ public class Libro {
     @Override
     public String toString() {
         return "Libro{" +
-                "id=" + id +
                 ", autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
                 '}';

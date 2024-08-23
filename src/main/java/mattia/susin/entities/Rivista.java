@@ -1,26 +1,23 @@
 package mattia.susin.entities;
 
 
-import jakarta.persistence.*;
-
-import java.util.UUID;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
-@Table(name = "riviste")
-public class Rivista {
+@DiscriminatorValue("riviste")
+public class Rivista extends LibroRivista {
 
     //ATTRIBUTI
 
-    @Id
-    @GeneratedValue
-    private UUID id;
-
     @Enumerated(EnumType.STRING)
-    private PeriodicitàRiviste periodicitàRiviste;
+    protected PeriodicitàRiviste periodicitàRiviste;
 
     //COSTRUTTORI
 
-    public Rivista() {
+    protected Rivista() {
         //COSTRUTTORE DI DEFAULT
     }
 
@@ -32,10 +29,6 @@ public class Rivista {
 
     //SETTER E GETTER
 
-    public UUID getId() {
-        return id;
-    }
-
     public PeriodicitàRiviste getPeriodicitàRiviste() {
         return periodicitàRiviste;
     }
@@ -45,11 +38,10 @@ public class Rivista {
     }
 
     //TO STRING
-    
+
     @Override
     public String toString() {
         return "Rivista{" +
-                "id=" + id +
                 ", periodicitàRiviste=" + periodicitàRiviste +
                 '}';
     }
