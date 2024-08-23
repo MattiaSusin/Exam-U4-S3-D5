@@ -1,10 +1,10 @@
 package mattia.susin.entities;
 
 
-import jakarta.persistence.*;
-
-import java.util.Date;
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "riviste")
@@ -12,65 +12,22 @@ public class Rivista {
 
     //ATTRIBUTI
 
-    @Id
-    @GeneratedValue
-    private UUID isbn;
-
-    @Column(name = "titolo")
-    private String titolo;
-
-    @Column(name = "anno_pubblicazione")
-    private Date annoPubblicazione;
-
-    @Column(name = "numero_pagine")
-    private int numeroPagine;
-
     @Enumerated(EnumType.STRING)
     private PeriodicitàRiviste periodicitàRiviste;
 
     //COSTRUTTORI
 
     public Rivista() {
-        //COSTRUTTORE DI DEFAULT 
+        //COSTRUTTORE DI DEFAULT
     }
 
-    public Rivista(String titolo, Date annoPubblicazione, int numeroPagine, PeriodicitàRiviste periodicitàRiviste) {
-        this.titolo = titolo;
-        this.annoPubblicazione = annoPubblicazione;
-        this.numeroPagine = numeroPagine;
+    public Rivista(PeriodicitàRiviste periodicitàRiviste) {
+
         this.periodicitàRiviste = periodicitàRiviste;
     }
 
 
     //SETTER E GETTER
-
-    public UUID getIsbn() {
-        return isbn;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public Date getAnnoPubblicazione() {
-        return annoPubblicazione;
-    }
-
-    public void setAnnoPubblicazione(Date annoPubblicazione) {
-        this.annoPubblicazione = annoPubblicazione;
-    }
-
-    public int getNumeroPagine() {
-        return numeroPagine;
-    }
-
-    public void setNumeroPagine(int numeroPagine) {
-        this.numeroPagine = numeroPagine;
-    }
 
     public PeriodicitàRiviste getPeriodicitàRiviste() {
         return periodicitàRiviste;
@@ -82,14 +39,11 @@ public class Rivista {
 
     //TO STRING
 
+
     @Override
     public String toString() {
         return "Rivista{" +
-                "isbn=" + isbn +
-                ", titolo='" + titolo + '\'' +
-                ", annoPubblicazione=" + annoPubblicazione +
-                ", numeroPagine=" + numeroPagine +
-                ", periodicitàRiviste=" + periodicitàRiviste +
+                "periodicitàRiviste=" + periodicitàRiviste +
                 '}';
     }
 }

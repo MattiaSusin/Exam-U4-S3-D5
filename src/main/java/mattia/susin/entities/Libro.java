@@ -1,28 +1,14 @@
 package mattia.susin.entities;
 
-import jakarta.persistence.*;
-
-import java.util.Date;
-import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "libri")
 public class Libro {
 
     //ATTRIBUTI
-
-    @Id
-    @GeneratedValue
-    private UUID isbn;
-
-    @Column(name = "titolo")
-    private String titolo;
-
-    @Column(name = "anno_pubblicazione")
-    private Date annoPubblicazione;
-
-    @Column(name = "numero_pagine")
-    private int numeroPagine;
 
     @Column(name = "autori")
     private String autore;
@@ -36,43 +22,12 @@ public class Libro {
         //COSTRUTTORE DI DEFAULT
     }
 
-    public Libro(String titolo, Date annoPubblicazione, int numeroPagine, String autore, String genere) {
-        this.titolo = titolo;
-        this.annoPubblicazione = annoPubblicazione;
-        this.numeroPagine = numeroPagine;
+    public Libro(String autore, String genere) {
         this.autore = autore;
         this.genere = genere;
     }
 
     //SETTER GETTER
-
-    public UUID getIsbn() {
-        return isbn;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public Date getAnnoPubblicazione() {
-        return annoPubblicazione;
-    }
-
-    public void setAnnoPubblicazione(Date annoPubblicazione) {
-        this.annoPubblicazione = annoPubblicazione;
-    }
-
-    public int getNumeroPagine() {
-        return numeroPagine;
-    }
-
-    public void setNumeroPagine(int numeroPagine) {
-        this.numeroPagine = numeroPagine;
-    }
 
     public String getAutore() {
         return autore;
@@ -90,17 +45,14 @@ public class Libro {
         this.genere = genere;
     }
 
+
     //TO STRING
 
 
     @Override
     public String toString() {
         return "Libro{" +
-                "isbn=" + isbn +
-                ", titolo='" + titolo + '\'' +
-                ", annoPubblicazione=" + annoPubblicazione +
-                ", numeroPagine=" + numeroPagine +
-                ", autore='" + autore + '\'' +
+                "autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
                 '}';
     }
