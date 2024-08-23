@@ -21,8 +21,8 @@ public class Rivista extends LibroRivista {
         //COSTRUTTORE DI DEFAULT
     }
 
-    public Rivista(PeriodicitàRiviste periodicitàRiviste) {
-
+    public Rivista(String titolo, int annoPubblicazione, int numeroPagine, PeriodicitàRiviste periodicitàRiviste) {
+        super(titolo, annoPubblicazione, numeroPagine);
         this.periodicitàRiviste = periodicitàRiviste;
     }
 

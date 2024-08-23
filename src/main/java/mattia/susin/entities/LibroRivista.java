@@ -2,7 +2,6 @@ package mattia.susin.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -17,9 +16,9 @@ public abstract class LibroRivista {
     @Column(name = "titolo")
     private String titolo;
 
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "anno_pubblicazione")
-    private Date annoPubblicazione;
+    private int annoPubblicazione;
 
     @Column(name = "numero_pagine")
     private int numeroPagine;
@@ -30,7 +29,7 @@ public abstract class LibroRivista {
 
     }
 
-    public LibroRivista(String titolo, Date annoPubblicazione, int numeroPagine) {
+    public LibroRivista(String titolo, int annoPubblicazione, int numeroPagine) {
         this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
@@ -50,11 +49,11 @@ public abstract class LibroRivista {
         this.titolo = titolo;
     }
 
-    public Date getAnnoPubblicazione() {
+    public int getAnnoPubblicazione() {
         return annoPubblicazione;
     }
 
-    public void setAnnoPubblicazione(Date annoPubblicazione) {
+    public void setAnnoPubblicazione(int annoPubblicazione) {
         this.annoPubblicazione = annoPubblicazione;
     }
 
@@ -65,6 +64,7 @@ public abstract class LibroRivista {
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
     }
+
     //TO STRING
 
     @Override

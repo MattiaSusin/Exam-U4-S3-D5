@@ -22,10 +22,24 @@ public class Libro extends LibroRivista {
         //COSTRUTTORE DI DEFAULT
     }
 
-    public Libro(String autore, String genere) {
+    /*public Libro(String titolo, int annoPubblicazione, int numeroPagine,String autore, String genere) {
+        super(titolo,annoPubblicazione,numeroPagine);
         this.autore = autore;
         this.genere = genere;
     }
+*/
+    /*public Libro(String titolo, int annoPubblicazione, int numeroPagine,String autore, String genere) {
+        super(titolo,annoPubblicazione,numeroPagine);
+        this.autore = autore;
+        this.genere = genere;
+    }*/
+
+    public Libro(String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
+        super(titolo, annoPubblicazione, numeroPagine);
+        this.autore = autore;
+        this.genere = genere;
+    }
+
 
     //SETTER GETTER
 
